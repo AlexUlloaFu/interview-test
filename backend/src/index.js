@@ -18,7 +18,7 @@ const users = [
 ];
 
 //dummy secret jwt key
-const secretKey = "";
+const secretKey = "asdasdsd";
 
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
