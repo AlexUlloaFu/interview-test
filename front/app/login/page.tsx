@@ -21,6 +21,7 @@ function LoginPage() {
           password,
         }),
       });
+
       const data = await response.json();
 
       if (response.status === 200) {
@@ -37,33 +38,55 @@ function LoginPage() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleLoginSubmit}>
-        <div>
-          <label htmlFor="username">Nombre</label>
-          <input
-            className="text-black"
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            className="text-black"
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        {status && <p>{status}</p>}
-        <button className="text-white" type="submit">
-          Login
-        </button>
-      </form>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-sm p-6 bg-white rounded-lg shadow-md">
+        <h2 className="mb-6 text-2xl font-semibold text-center text-gray-800">Iniciar Sesión</h2>
+        <form onSubmit={handleLoginSubmit}>
+          <div className="mb-4">
+            <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-700">
+              Nombre de usuario
+            </label>
+            <input
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Ingresa tu usuario"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-700">
+              Contraseña
+            </label>
+            <input
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Ingresa tu contraseña"
+              required
+            />
+          </div>
+          {status && (
+            <p
+              className={`mb-4 text-sm font-medium ${
+                status.includes("Error") ? "text-red-500" : "text-green-500"
+              }`}
+            >
+              {status}
+            </p>
+          )}
+          <button
+            className="w-full px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+            type="submit"
+          >
+            Iniciar Sesión
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
